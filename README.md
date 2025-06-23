@@ -12,8 +12,6 @@ This project is a responsive, interactive navigation menu built using **HTML**, 
 - ✅ Active link highlighting based on scroll position
 - ✅ Custom section backgrounds for visual separation
 
-## 📁 File Structure
-
 
 ## 🌐 Technologies Used
 
