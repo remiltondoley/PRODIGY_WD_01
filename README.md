@@ -1,60 +1,60 @@
 # PRODIGY_WD_01
 
-# Interactive Navigation Menu with Tailwind CSS
+🌐 Interactive Navigation Menu
+A fully responsive, mobile-friendly, and interactive navigation menu built with HTML, Tailwind CSS, Font Awesome, and JavaScript. It features a sticky navigation bar, smooth scrolling, dynamic section highlighting, and animated mobile toggling—ideal for modern websites and portfolios.
 
-This project is a responsive, interactive navigation menu built using **HTML**, **Tailwind CSS**, and **Font Awesome**. It includes smooth scrolling, a mobile-friendly hamburger menu, and active link highlighting as you scroll through sections.
+🚀 Features
+🔗 Sticky top navigation
 
-## 🔧 Features
+🎨 Smooth transition effects
 
-- ✅ Fixed navigation bar with smooth scroll
-- ✅ Mobile-responsive hamburger menu toggle
-- ✅ Animated underline hover effect on menu links
-- ✅ Active link highlighting based on scroll position
-- ✅ Custom section backgrounds for visual separation
+📱 Mobile menu with animated toggle
+
+🧭 Scroll-based dynamic highlighting of nav items
+
+⚡ Fast performance with Tailwind CSS utility classes
+
+📐 Responsive design for all devices
+
+✨ Minimal and modern UI
 
 
-## 🌐 Technologies Used
 
-- HTML5  
-- Tailwind CSS (via CDN)  
-- Font Awesome (via CDN)  
-- Vanilla JavaScript  
+🛠️ Technologies Used
+HTML5 – Structure
 
-## 🚀 How to Run
+Tailwind CSS – Styling and responsiveness
 
-1. Clone or download the repository.
-2. Open the `index.html` file in any modern web browser.
-3. Scroll or click the menu links to see the navigation features in action.
+Font Awesome – Icons
 
-## 📱 Mobile Support
+JavaScript (Vanilla) – Interactivity and animations
 
-The navigation is fully responsive:
-- On **desktop**, the menu items are visible inline.
-- On **mobile**, a hamburger icon toggles the dropdown menu.
+📂 Folder Structure
 
-## 🖱️ Scroll Behavior
+├── index.html          # Main HTML file
+├── style.css           # (Optional if using custom Tailwind build)
+└── README.md           # Project documentation
+💡 How It Works
+The menu uses position: fixed and changes color on scroll for better UX.
 
-The JavaScript script handles:
-- Smooth scrolling to target sections
-- Highlighting the current active link
-- Changing navbar background when scrolling down
+On mobile, a hamburger icon toggles the menu.
 
-## 🧪 Demo Sections
+Smooth scrolling and active link highlighting are implemented with JS.
 
-The demo includes the following full-height sections:
-- Home
-- About
-- Services
-- Portfolio
-- Contact
+🔧 Setup Instructions
 
-Each section has a unique background color for better visibility during navigation.
+Clone this repository
+git clone https://github.com/remiltondoley/PRODIGY_WD_01/edit/main/README.md
+Open index.html in your browser
+You’re all set! No build tools or dependencies required.
 
-## 📝 Notes
+📌 Customization
+You can easily customize:
 
-- Ensure you're online to load Tailwind CSS and Font Awesome from CDN.
-- You can extend this template for your portfolio, landing pages, or multi-section sites.
+Logo (Remilton Doley)
 
-## 📄 License
+Section IDs and contents
 
-This project is open-source and available for educational and personal use.
+Colors via Tailwind utility classes
+
+Icons using Font Awesome
