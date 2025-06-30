@@ -3,371 +3,597 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Navigation Menu</title>
+    <title>Interactive Navigation Landing Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Custom CSS for transitions and animations */
-        .nav-item {
-            position: relative;
+        /* Custom CSS for smooth transitions */
+        .nav-transition {
+            transition: all 0.3s ease-in-out;
         }
         
-        .nav-item::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: currentColor;
-            transition: width 0.3s ease;
+        /* Custom animation for hero text */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
-        .nav-item:hover::after {
-            width: 100%;
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
+        /* Custom hover effect for buttons */
+        .btn-hover {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         
-        .mobile-menu.open {
-            max-height: 500px;
+        .btn-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
         
-        /* Custom scroll behavior */
-        html {
-            scroll-behavior: smooth;
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
         }
     </style>
 </head>
-<body class="font-sans bg-gray-100">
-    <!-- Navigation Menu -->
-    <nav id="mainNav" class="fixed w-full z-50 transition-all duration-500 bg-white shadow-md">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav id="mainNav" class="fixed w-full z-50 nav-transition bg-white/90 backdrop-blur-sm shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 md:h-20">
                 <!-- Logo -->
-                <div class="flex items-center">
-                    <a href="#" class="text-2xl font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
-                        Remilton Doley
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-2xl font-bold text-indigo-600">
+                        Remilton
                     </a>
                 </div>
                 
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-item text-gray-700 hover:text-indigo-600 transition-colors">Home</a>
-                    <a href="#features" class="nav-item text-gray-700 hover:text-indigo-600 transition-colors">Features</a>
-                    <a href="#pricing" class="nav-item text-gray-700 hover:text-indigo-600 transition-colors">Pricing</a>
-                    <a href="#about" class="nav-item text-gray-700 hover:text-indigo-600 transition-colors">About</a>
-                    <a href="#contact" class="nav-item text-gray-700 hover:text-indigo-600 transition-colors">Contact</a>
-                </div>
-                
                 <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobileMenuButton" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
+                <div class="flex items-center md:hidden">
+                    <button id="mobileMenuBtn" class="text-gray-700 hover:text-indigo-600 focus:outline-none">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="mobile-menu md:hidden bg-white">
-                <div class="px-2 pt-2 pb-4 space-y-1">
-                    <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Home</a>
-                    <a href="#features" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Features</a>
-                    <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Pricing</a>
-                    <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">About</a>
-                    <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Contact</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Home</a>
+                    <a href="#features" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Features</a>
+                    <a href="#pricing" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Pricing</a>
+                    <a href="#about" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">About</a>
+                    <a href="#contact" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Contact</a>
+                    <a href="#" class="ml-4 px-4 py-2 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 btn-hover">Get Started</a>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Home</a>
+                <a href="#features" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Features</a>
+                <a href="#pricing" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Pricing</a>
+                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">About</a>
+                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-indigo-50">Contact</a>
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 btn-hover mt-2">Get Started</a>
             </div>
         </div>
     </nav>
 
-    <!-- Page Content Sections -->
-    <section id="home" class="min-h-screen pt-20 flex items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
-        <div class="text-center px-4">
-            <h1 class="text-5xl font-bold mb-6">Welcome to Our Website</h1>
-            <p class="text-xl mb-8">Experience the best interactive navigation menu</p>
-            <button class="bg-white text-indigo-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
-                Get Started
-            </button>
-        </div>
-    </section>
-
-    <section id="features" class="min-h-screen pt-20 flex items-center justify-center bg-white">
-        <div class="text-center px-4 max-w-4xl">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">Our Amazing Features</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-bolt text-4xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Fast Performance</h3>
-                    <p class="text-gray-600">Lightning fast navigation and smooth transitions for the best user experience.</p>
-                </div>
-                <div class="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-mobile-alt text-4xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Responsive Design</h3>
-                    <p class="text-gray-600">Works perfectly on all devices from mobile phones to large desktop screens.</p>
-                </div>
-                <div class="p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-                    <i class="fas fa-paint-brush text-4xl text-indigo-600 mb-4"></i>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Beautiful UI</h3>
-                    <p class="text-gray-600">Elegant design with smooth animations and attention to detail.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing" class="min-h-screen pt-20 flex items-center justify-center bg-gray-100">
-        <div class="text-center px-4 max-w-4xl">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">Simple Pricing</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Basic</h3>
-                    <p class="text-5xl font-bold mb-6 text-indigo-600">$9.99</p>
-                    <ul class="space-y-3 mb-8 text-gray-600">
-                        <li>5 Projects</li>
-                        <li>1GB Storage</li>
-                        <li>Basic Support</li>
-                    </ul>
-                    <button class="w-full bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors">
-                        Choose Plan
-                    </button>
-                </div>
-                <div class="p-8 rounded-lg bg-white shadow-xl border-2 border-indigo-500 transform scale-105">
-                    <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase -mt-10 mb-4 inline-block">Popular</span>
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Pro</h3>
-                    <p class="text-5xl font-bold mb-6 text-indigo-600">$19.99</p>
-                    <ul class="space-y-3 mb-8 text-gray-600">
-                        <li>Unlimited Projects</li>
-                        <li>10GB Storage</li>
-                        <li>Priority Support</li>
-                    </ul>
-                    <button class="w-full bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors">
-                        Choose Plan
-                    </button>
-                </div>
-                <div class="p-8 rounded-lg bg-white shadow-lg hover:shadow-xl transition-shadow">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Enterprise</h3>
-                    <p class="text-5xl font-bold mb-6 text-indigo-600">$49.99</p>
-                    <ul class="space-y-3 mb-8 text-gray-600">
-                        <li>Unlimited Projects</li>
-                        <li>100GB Storage</li>
-                        <li>24/7 Support</li>
-                    </ul>
-                    <button class="w-full bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors">
-                        Choose Plan
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="min-h-screen pt-20 flex items-center justify-center bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="About Us" class="rounded-lg shadow-xl">
-                </div>
-                <div class="md:w-1/2 md:pl-12">
-                    <h2 class="text-4xl font-bold mb-6 text-gray-800">About Our Company</h2>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        We are a passionate team of designers and developers dedicated to creating beautiful, functional websites with exceptional user experiences. Our interactive navigation menu is just one example of our attention to detail and commitment to quality.
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-indigo-50 to-blue-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="animate-fadeInUp">
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+                        Build Amazing Digital Experiences
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8">
+                        Remilton helps you create beautiful, responsive websites with our powerful tools and components. Start building today with our intuitive platform.
                     </p>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        Founded in 2025, we've worked with clients across various industries to deliver digital solutions that drive results. We believe in the power of good design combined with solid technology.
-                    </p>
-                    <button class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors">
-                        Learn More
-                    </button>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#" class="px-6 py-3 rounded-md text-white bg-indigo-600 hover:bg-indigo-700 font-medium btn-hover">
+                            Get Started <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#features" class="px-6 py-3 rounded-md text-indigo-600 bg-white hover:bg-gray-50 font-medium btn-hover border border-indigo-600">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Hero Image" class="rounded-xl shadow-xl w-full h-auto">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="min-h-screen pt-20 flex items-center justify-center bg-gray-100">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-bold mb-4 text-gray-800">Get In Touch</h2>
-                <p class="text-xl text-gray-600">Have questions? We'd love to hear from you.</p>
+    <!-- Features Section -->
+    <section id="features" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Powerful Features</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our platform comes packed with everything you need to create stunning websites and applications.
+                </p>
             </div>
-            <div class="bg-white rounded-lg shadow-xl p-8">
-                <form>
-                    <div class="grid md:grid-cols-2 gap-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600">
+                        Optimized for performance with minimal load times and smooth animations that delight your users.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-screen text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Fully Responsive</h3>
+                    <p class="text-gray-600">
+                        Looks perfect on any device, from mobile phones to large desktop displays.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-sliders text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Customizable</h3>
+                    <p class="text-gray-600">
+                        Easily customize every aspect to match your brand with our intuitive design tools.
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Secure</h3>
+                    <p class="text-gray-600">
+                        Enterprise-grade security to protect your data and your customers' information.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Analytics</h3>
+                    <p class="text-gray-600">
+                        Built-in analytics to track user behavior and optimize your content strategy.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-headset text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">24/7 Support</h3>
+                    <p class="text-gray-600">
+                        Our expert team is always available to help you with any questions or issues.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 md:py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Choose the perfect plan for your needs. No hidden fees, cancel anytime.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Basic Plan -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Basic</h3>
+                    <p class="text-gray-600 mb-6">Perfect for small projects</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$9</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> 10 Projects
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> 10 GB Storage
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Basic Support
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-times text-gray-300 mr-2"></i> <span class="line-through">Advanced Analytics</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 px-4 text-center rounded-md bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 btn-hover">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Pro Plan (Featured) -->
+                <div class="bg-white p-8 rounded-xl shadow-lg border-2 border-indigo-500 relative">
+                    <div class="absolute top-0 right-0 bg-indigo-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                        POPULAR
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pro</h3>
+                    <p class="text-gray-600 mb-6">For growing businesses</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$29</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Unlimited Projects
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> 50 GB Storage
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Priority Support
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Advanced Analytics
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 px-4 text-center rounded-md bg-indigo-600 text-white font-medium hover:bg-indigo-700 btn-hover">
+                        Get Started
+                    </a>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">For large organizations</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Unlimited Projects
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> 500 GB Storage
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> 24/7 Support
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i> Custom Solutions
+                        </li>
+                    </ul>
+                    <a href="#" class="block w-full py-3 px-4 text-center rounded-md bg-gray-100 text-gray-800 font-medium hover:bg-gray-200 btn-hover">
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="mb-12 lg:mb-0">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Our Team" class="rounded-xl shadow-lg w-full h-auto">
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">About Our Company</h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Founded in 2025, Remilton has been at the forefront of digital innovation, helping businesses of all sizes create stunning online experiences. Our team of passionate designers, developers, and strategists work together to deliver exceptional results.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8">
+                        We believe in the power of technology to transform businesses and create meaningful connections with customers. Our mission is to make high-quality digital solutions accessible to everyone.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            <h3 class="text-2xl font-bold text-indigo-600 mb-2">150+</h3>
+                            <p class="text-gray-600">Happy Clients</p>
                         </div>
                         <div>
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                            <h3 class="text-2xl font-bold text-indigo-600 mb-2">24</h3>
+                            <p class="text-gray-600">Team Members</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-indigo-600 mb-2">8</h3>
+                            <p class="text-gray-600">Years Experience</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-indigo-600 mb-2">500+</h3>
+                            <p class="text-gray-600">Projects Completed</p>
                         </div>
                     </div>
-                    <div class="mt-6">
-                        <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                        <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-indigo-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Have questions or want to discuss a project? We'd love to hear from you.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2">
+                    <div class="p-8 md:p-12">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Send us a message</h3>
+                        <form>
+                            <div class="mb-6">
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div class="mb-6">
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            </div>
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 btn-hover">
+                                Send Message
+                            </button>
+                        </form>
                     </div>
-                    <div class="mt-6">
-                        <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                        <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition"></textarea>
+                    <div class="bg-indigo-600 text-white p-8 md:p-12">
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <i class="fas fa-map-marker-alt text-indigo-300 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium">Address</h4>
+                                    <p class="text-indigo-100">Guwahati, Assam, India</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <i class="fas fa-phone-alt text-indigo-300 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium">Phone</h4>
+                                    <p class="text-indigo-100">+91 7002929615</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <i class="fas fa-envelope text-indigo-300 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium">Email</h4>
+                                    <p class="text-indigo-100">remilton@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 mt-1">
+                                    <i class="fas fa-clock text-indigo-300 text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-medium">Hours</h4>
+                                    <p class="text-indigo-100">Monday - Friday: 9am - 6pm</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="text-lg font-medium mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center hover:bg-indigo-800 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center hover:bg-indigo-800 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center hover:bg-indigo-800 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-indigo-700 flex items-center justify-center hover:bg-indigo-800 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-8">
-                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-indigo-700 transition-colors">
-                            Send Message
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <a href="#" class="text-2xl font-bold text-white mb-4">
+                        Remilton
+                    </a>
+                    <p class="text-gray-400">
+                        Building the future of digital experiences with innovative solutions.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Tutorials</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Support</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">API Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Subscribe</h3>
+                    <p class="text-gray-400 mb-4">
+                        Get the latest news and updates from Remilton.
+                    </p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md text-gray-900 w-full focus:outline-none">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-md">
+                            <i class="fas fa-paper-plane"></i>
                         </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between">
-                <div class="mb-8 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-4">Remilton Doley</h3>
-                    <p class="text-gray-400 max-w-md">
-                        Creating beautiful, functional websites with exceptional user experiences since 2025.
-                    </p>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                            <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">Features</a></li>
-                            <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors">Pricing</a></li>
-                            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
-                            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Company</h4>
-                        <ul class="space-y-2">
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Careers</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
-                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Press</a></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-lg font-semibold mb-4">Connect</h4>
-                        <div class="flex space-x-4">
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fab fa-facebook"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="text-gray-400 hover:text-white transition-colors text-xl"><i class="fab fa-linkedin"></i></a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>&copy; 2025 Remilton Doley. All rights reserved.</p>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Remilton. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Cookies</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-indigo-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const nav = document.getElementById('mainNav');
-            const mobileMenuButton = document.getElementById('mobileMenuButton');
-            const mobileMenu = document.getElementById('mobileMenu');
-            
-            // Scroll event listener for navbar style change
-            window.addEventListener('scroll', function() {
-                if (window.scrollY > 50) {
-                    nav.classList.remove('bg-white');
-                    nav.classList.add('bg-indigo-600', 'shadow-lg');
-                    nav.querySelectorAll('.nav-item').forEach(item => {
-                        item.classList.remove('text-gray-700', 'hover:text-indigo-600');
-                        item.classList.add('text-white', 'hover:text-indigo-200');
-                    });
-                    nav.querySelector('a.text-2xl').classList.remove('text-indigo-600', 'hover:text-indigo-800');
-                    nav.querySelector('a.text-2xl').classList.add('text-white', 'hover:text-indigo-200');
-                    
-                    // Change mobile menu button color
-                    mobileMenuButton.classList.remove('text-gray-700', 'hover:text-indigo-600');
-                    mobileMenuButton.classList.add('text-white', 'hover:text-indigo-200');
-                } else {
-                    nav.classList.add('bg-white');
-                    nav.classList.remove('bg-indigo-600', 'shadow-lg');
-                    nav.querySelectorAll('.nav-item').forEach(item => {
-                        item.classList.add('text-gray-700', 'hover:text-indigo-600');
-                        item.classList.remove('text-white', 'hover:text-indigo-200');
-                    });
-                    nav.querySelector('a.text-2xl').classList.add('text-indigo-600', 'hover:text-indigo-800');
-                    nav.querySelector('a.text-2xl').classList.remove('text-white', 'hover:text-indigo-200');
-                    
-                    // Revert mobile menu button color
-                    mobileMenuButton.classList.add('text-gray-700', 'hover:text-indigo-600');
-                    mobileMenuButton.classList.remove('text-white', 'hover:text-indigo-200');
-                }
-            });
-            
-            // Mobile menu toggle
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('open');
-                const icon = mobileMenuButton.querySelector('i');
-                if (mobileMenu.classList.contains('open')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-            
-            // Close mobile menu when clicking a link
-            document.querySelectorAll('#mobileMenu a').forEach(link => {
-                link.addEventListener('click', function() {
-                    mobileMenu.classList.remove('open');
-                    mobileMenuButton.querySelector('i').classList.remove('fa-times');
-                    mobileMenuButton.querySelector('i').classList.add('fa-bars');
-                });
-            });
-            
-            // Smooth scrolling for all links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 70,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-            
-            // Highlight active section in navigation
-            const sections = document.querySelectorAll('section');
-            const navItems = document.querySelectorAll('.nav-item, #mobileMenu a');
-            
-            window.addEventListener('scroll', function() {
-                let current = '';
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Navbar Scroll Effect
+        const mainNav = document.getElementById('mainNav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            // Navbar background change on scroll
+            if (window.scrollY > 50) {
+                mainNav.classList.add('shadow-md', 'bg-white');
+                mainNav.classList.remove('bg-white/90');
                 
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    
-                    if (pageYOffset >= (sectionTop - 100)) {
-                        current = section.getAttribute('id');
-                    }
+                // Change nav link colors on scroll
+                navLinks.forEach(link => {
+                    link.classList.add('text-gray-900');
+                    link.classList.remove('text-gray-700');
                 });
+            } else {
+                mainNav.classList.remove('shadow-md', 'bg-white');
+                mainNav.classList.add('bg-white/90');
                 
-                navItems.forEach(item => {
-                    item.classList.remove('text-indigo-600', 'font-semibold');
-                    if (item.getAttribute('href') === `#${current}`) {
-                        item.classList.add('text-indigo-600', 'font-semibold');
-                    }
+                // Revert nav link colors
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-900');
+                    link.classList.add('text-gray-700');
                 });
+            }
+            
+            // Show/hide back to top button
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
+        
+        // Back to top button
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Add animation class to elements when they come into view
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-fadeInUp');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-fadeInUp');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
     </script>
 </body>
 </html>
